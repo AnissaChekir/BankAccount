@@ -1,7 +1,9 @@
-package BankAccount.BankAccount;
+package entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AccountEntity {
 	
@@ -9,6 +11,7 @@ public class AccountEntity {
 	private BigDecimal credit;
 	private BigDecimal debit;
 	private BigDecimal balance;
+	
 	
 	public Date getDate() {
 		return date;
@@ -34,6 +37,17 @@ public class AccountEntity {
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
+	public AccountEntity(Date date, BigDecimal credit, BigDecimal debit, BigDecimal balance) {
+		super();
+		this.date = date;
+		this.credit = credit;
+		this.debit = debit;
+		this.balance = balance;
+	}
+	public AccountEntity() {
+		super();
+	}
+	
 
 
 }
