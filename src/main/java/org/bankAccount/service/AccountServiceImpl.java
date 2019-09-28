@@ -8,24 +8,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.bankAccount.Entity.AccountEntity;
+import org.bankAccount.exception.NegativeAmountException;
+import org.bankAccount.exception.VerifAmountException;
 
 
 public class AccountServiceImpl implements AccountService {
 	private BigDecimal balance=BigDecimal.ZERO; 
 	
+	
 	private  List<AccountEntity> listTransaction = new ArrayList<AccountEntity>();
 
-	public void deposit(BigDecimal value, Date date) {
+	public void deposit(BigDecimal value, Date date) throws NegativeAmountException {
+		if(value.intValue()<0) {
+			throw new NegativeAmountException();
+		}
 		this.balance = balance.add(value) ; 
 		AccountEntity transaction = new AccountEntity(date,value,null,balance);
 		listTransaction.add(transaction);
 	}
 
-	public void withdrawal(BigDecimal value, Date date) {
+	public void withdrawal(BigDecimal value, Date date) throws VerifAmountException {
 		
 			if(balance.compareTo(value)<0 )
 			{
-				throw new ArithmeticException("vous n'avez pas de solde");
+				throw new VerifAmountException(balance);
 			}else {
 				this.balance = balance.subtract(value);
 				AccountEntity transaction = new AccountEntity(date,null,value,balance);
