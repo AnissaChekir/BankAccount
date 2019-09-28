@@ -1,17 +1,11 @@
-package BankAccount.BankAccount;
+package org.bankAccount;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import entity.AccountEntity;
-import services.AccountService;
-import services.AccountServiceImpl;
+import org.bankAccount.service.AccountService;
+import org.bankAccount.service.AccountServiceImpl;
 
 
 public class App 

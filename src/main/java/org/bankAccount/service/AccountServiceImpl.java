@@ -1,4 +1,4 @@
-package services;
+package org.bankAccount.service;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import entity.AccountEntity;
+import org.bankAccount.Entity.AccountEntity;
 
 
 public class AccountServiceImpl implements AccountService {
@@ -16,11 +16,8 @@ public class AccountServiceImpl implements AccountService {
 	private  List<AccountEntity> listTransaction = new ArrayList<AccountEntity>();
 
 	public void deposit(BigDecimal value, Date date) {
-		AccountEntity transaction = new AccountEntity();
 		this.balance = balance.add(value) ; 
-		transaction.setCredit(value);
-		transaction.setBalance(balance);
-		transaction.setDate(date);
+		AccountEntity transaction = new AccountEntity(date,value,null,balance);
 		listTransaction.add(transaction);
 	}
 
@@ -30,11 +27,8 @@ public class AccountServiceImpl implements AccountService {
 			{
 				throw new ArithmeticException("vous n'avez pas de solde");
 			}else {
-				AccountEntity transaction = new AccountEntity();
 				this.balance = balance.subtract(value);
-				transaction.setDebit(value);
-				transaction.setBalance(balance);
-				transaction.setDate(date);
+				AccountEntity transaction = new AccountEntity(date,null,value,balance);
 				listTransaction.add(transaction);
 			}
 		

@@ -1,9 +1,9 @@
-package BankAccount.BankAccount;
+package org.bankAccount;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import entity.AccountEntity;
+import org.bankAccount.Entity.AccountEntity;
 
 public class Deposit extends Operation {
 	

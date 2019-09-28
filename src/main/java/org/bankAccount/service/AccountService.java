@@ -1,11 +1,11 @@
-package services;
+package org.bankAccount.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import entity.AccountEntity;
+import org.bankAccount.Entity.AccountEntity;
 
 public interface AccountService {
 	

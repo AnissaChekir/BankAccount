@@ -1,4 +1,4 @@
-package entity;
+package org.bankAccount.Entity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

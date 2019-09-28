@@ -1,11 +1,11 @@
-package BankAccount.BankAccount;
+package org.bankAccount;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import entity.AccountEntity;
+import org.bankAccount.Entity.AccountEntity;
 
 public abstract class Operation {
 
