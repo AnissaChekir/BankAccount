@@ -1,13 +1,10 @@
-package org.bankAccount.service;
+package org.bankaccount.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import org.bankAccount.Entity.AccountEntity;
-import org.bankAccount.exception.NegativeAmountException;
-import org.bankAccount.exception.VerifAmountException;
+import org.bankaccount.exception.NegativeAmountException;
+import org.bankaccount.exception.VerifAmountException;
 
 public interface AccountService {
 	

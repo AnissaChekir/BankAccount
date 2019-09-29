@@ -1,25 +1,26 @@
-package org.bankAccount.service;
+package org.bankaccount.service;
+
+import static org.bankaccount.converter.DateConverter.convertDateToString;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.bankAccount.Entity.AccountEntity;
-import org.bankAccount.exception.NegativeAmountException;
-import org.bankAccount.exception.VerifAmountException;
+import org.bankaccount.Entity.AccountEntity;
+import org.bankaccount.exception.NegativeAmountException;
+import org.bankaccount.exception.VerifAmountException;
 
 
 public class AccountServiceImpl implements AccountService {
 	private BigDecimal balance=BigDecimal.ZERO; 
 	
 	
-	private  List<AccountEntity> listTransaction = new ArrayList<AccountEntity>();
+	private  List<AccountEntity> listTransaction = new ArrayList<>();
 
 	public void deposit(BigDecimal value, Date date) throws NegativeAmountException {
-		if(value.intValue()<0) {
+		if(value.intValue()<=0) {
 			throw new NegativeAmountException();
 		}
 		this.balance = balance.add(value) ; 
@@ -41,13 +42,18 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	public void print() {
-		 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			
-			
-			List<AccountEntity> sortedList = listTransaction.stream().
+			List<AccountEntity> sortedTransactionList = listTransaction.stream().
 					sorted((AccountEntity t1, AccountEntity t2)->t1.getDate().compareTo(t2.getDate())).collect(Collectors.toList());
-			System.out.println("date       | credit   | debit | balance");
-			sortedList.forEach(test -> System.out.println(formatter.format(test.getDate())+"||"+ test.getCredit()+"      ||    "+ test.getDebit()+"||    "+test.getBalance()));
+			System.out.println("date      || credit   || debit  || balance");
+			sortedTransactionList.forEach(account -> {
+				if(account.getCredit()==null) {
+					System.out.println(convertDateToString(account.getDate())+"||"+"     "+"     ||    "+ account.getDebit()+" ||    "+account.getBalance());
+				}else if(account.getDebit()==null) {
+					System.out.println(convertDateToString(account.getDate())+"||"+ account.getCredit()+"      ||    "+"    "+"||    "+account.getBalance());
+				}
+				
+			});
 		
 	}
 	
